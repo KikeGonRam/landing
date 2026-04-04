@@ -50,10 +50,10 @@ export function SEO({ title, description, ogImage }: SEOProps) {
       if (tag) {
         tag.setAttribute('content', content);
       } else {
-        tag = document.createElement('meta');
-        tag.name = name;
-        tag.setAttribute('content', content);
-        document.head.appendChild(tag);
+        const meta = document.createElement('meta');
+        meta.setAttribute('name', name);
+        meta.setAttribute('content', content);
+        document.head.appendChild(meta);
       }
     };
 

@@ -344,6 +344,7 @@ export interface BlogPost {
   date: string;
   image: string;
   category: string;
+  url?: string;
 }
 
 export interface BlogConfig {
@@ -353,12 +354,14 @@ export interface BlogConfig {
   readMoreLabel: string;
   readTimePrefix: string;
   posts: BlogPost[];
+  allPostsUrl?: string;
 }
 
 export const blogConfig: BlogConfig = {
   title: "Blog de Estilo",
   subtitle: "Consejos, tendencias y cultura de la barbería moderna.",
   allPostsLabel: "Ver Todos",
+  allPostsUrl: "/blog",
   readMoreLabel: "Leer Más",
   readTimePrefix: "Lectura: ",
   posts: [
@@ -369,7 +372,8 @@ export const blogConfig: BlogConfig = {
       readTime: "5 min", 
       date: "15 Mar, 2026", 
       image: "/blog-1.jpg", 
-      category: "Consejos" 
+      category: "Consejos",
+      url: "/blog/guia-del-fade-perfecto"
     },
     { 
       id: 2, 
@@ -378,7 +382,8 @@ export const blogConfig: BlogConfig = {
       readTime: "4 min", 
       date: "10 Mar, 2026", 
       image: "/blog-2.jpg", 
-      category: "Cuidado" 
+      category: "Cuidado",
+      url: "/blog/cuidado-de-la-barba-invierno"
     },
   ],
 };

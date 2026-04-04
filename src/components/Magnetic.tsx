@@ -1,4 +1,4 @@
-import { useRef, useState, type ReactNode } from 'react';
+import { useRef, type ReactNode } from 'react';
 import gsap from 'gsap';
 
 interface MagneticProps {
@@ -8,7 +8,6 @@ interface MagneticProps {
 
 export function Magnetic({ children, strength = 0.5 }: MagneticProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const { clientX, clientY } = e;
