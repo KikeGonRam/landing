@@ -20,6 +20,8 @@ export function Navigation() {
   const navigate = useNavigate();
 
   const isHome = location.pathname === '/';
+  const isBlogDetail = location.pathname.startsWith('/blog/');
+  const hasDarkHeader = isHome || isBlogDetail;
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -54,7 +56,8 @@ export function Navigation() {
     }
   };
 
-  return (    <>
+  return (
+    <>
       <nav
         ref={navRef}
         aria-label="Principal"
@@ -70,7 +73,7 @@ export function Navigation() {
             <Link
               to="/"
               className={`text-h6 font-medium transition-colors duration-300 ${
-                isScrolled || theme === 'dark' || !isHome ? 'text-theme-primary' : 'text-white'
+                isScrolled || theme === 'dark' || !hasDarkHeader ? 'text-theme-primary' : 'text-white'
               } hover:text-highlight`}
             >
               {navigationConfig.logo}
@@ -85,7 +88,7 @@ export function Navigation() {
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
                 className={`text-body transition-colors duration-300 relative group ${
-                  isScrolled || theme === 'dark' || !isHome ? 'text-theme-secondary hover:text-theme-primary' : 'text-white/85 hover:text-white'
+                  isScrolled || theme === 'dark' || !hasDarkHeader ? 'text-theme-secondary hover:text-theme-primary' : 'text-white/85 hover:text-white'
                 }`}
               >
                 {item.label}
@@ -99,7 +102,7 @@ export function Navigation() {
                 type="button"
                 onClick={toggleTheme}
                 className={`theme-toggle ${
-                  !isScrolled && theme === 'light' && isHome ? 'text-white hover:bg-white/10' : ''
+                  !isScrolled && theme === 'light' && hasDarkHeader ? 'text-white hover:bg-white/10' : ''
                 }`}
                 aria-label={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
               >
@@ -118,7 +121,9 @@ export function Navigation() {
             <button
               type="button"
               onClick={toggleTheme}
-              className="theme-toggle w-9 h-9"
+              className={`theme-toggle w-9 h-9 transition-colors duration-300 ${
+                !isScrolled && theme === 'light' && hasDarkHeader ? 'text-white border-white/20 hover:bg-white/10' : ''
+              }`}
               aria-label={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
             >
               {theme === 'dark' ? (
@@ -130,7 +135,9 @@ export function Navigation() {
             
             <button
               type="button"
-              className="w-10 h-10 flex items-center justify-center text-theme-primary"
+              className={`w-10 h-10 flex items-center justify-center transition-colors duration-300 ${
+                isScrolled || theme === 'dark' || !hasDarkHeader ? 'text-theme-primary' : 'text-white'
+              }`}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
               aria-label={isMobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
