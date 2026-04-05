@@ -133,6 +133,13 @@ module.exports = {
           "100%": { width: "100%" },
         },
       },
+      transitionDuration: {
+        '400': '400ms',
+        '600': '600ms',
+      },
+      transitionTimingFunction: {
+        'expo-out': 'cubic-bezier(var(--ease-expo-out))',
+      },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",

@@ -496,7 +496,7 @@ export function Contact() {
                 {isSubmitting ? contactConfig.sendingLabel : contactConfig.submitButtonText}
               </span>
               <Send className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
-              <div className="absolute inset-0 bg-highlight transform -translate-x-full group-hover:translate-x-0 transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+              <div className="absolute inset-0 bg-highlight transform -translate-x-full group-hover:translate-x-0 transition-transform duration-400 ease-expo-out" />
             </button>
           </form>
 
