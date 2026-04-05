@@ -60,5 +60,25 @@ export default defineConfig(({ mode }) => {
         "@": path.resolve(__dirname, "./src"),
       },
     },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+            'vendor-three': ['three', '@react-three/fiber', '@react-three/drei'],
+            'vendor-gsap': ['gsap', '@gsap/react', 'lenis'],
+            'vendor-icons': ['lucide-react'],
+            'vendor-ui': [
+              '@radix-ui/react-accordion',
+              '@radix-ui/react-dialog',
+              '@radix-ui/react-navigation-menu',
+              'embla-carousel-react',
+              'sonner'
+            ],
+          },
+        },
+      },
+      chunkSizeWarningLimit: 1000,
+    },
   };
 });

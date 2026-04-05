@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -8,12 +8,14 @@ import { CustomCursor } from './components/CustomCursor';
 import { ParticleField } from './components/ParticleField';
 import { SEO } from './components/SEO';
 import { Preloader } from './components/Preloader';
-import { Home } from './pages/Home';
-import { BlogDetail } from './pages/BlogDetail';
 import { siteConfig } from './config';
 import { MotionPreferenceProvider } from './hooks/useMotionPreference';
 import { ThemeProvider } from './hooks/useTheme';
 import { Toaster } from 'sonner';
+
+// Lazy load pages
+const Home = lazy(() => import('./pages/Home').then(module => ({ default: module.Home })));
+const BlogDetail = lazy(() => import('./pages/BlogDetail').then(module => ({ default: module.BlogDetail })));
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,6 +25,14 @@ function ScrollToTop() {
     window.scrollTo(0, 0);
   }, [pathname]);
   return null;
+}
+
+function Loading() {
+  return (
+    <div className="fixed inset-0 bg-theme-primary z-50 flex items-center justify-center">
+      <div className="w-8 h-8 border-2 border-highlight border-t-transparent rounded-full animate-spin" />
+    </div>
+  );
 }
 
 function AppContent() {
@@ -83,12 +93,14 @@ function AppContent() {
       <Navigation />
 
       {/* App Routes */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/blog/:slug" element={<BlogDetail />} />
-        {/* Fallback to Home */}
-        <Route path="*" element={<Home />} />
-      </Routes>
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/blog/:slug" element={<BlogDetail />} />
+          {/* Fallback to Home */}
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </Suspense>
 
       <Toaster position="bottom-right" richColors closeButton />
     </div>
