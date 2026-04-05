@@ -8,6 +8,7 @@ import { CustomCursor } from './components/CustomCursor';
 import { ParticleField } from './components/ParticleField';
 import { SEO } from './components/SEO';
 import { Preloader } from './components/Preloader';
+import { BlogSkeleton } from './components/Skeleton';
 import { siteConfig } from './config';
 import { MotionPreferenceProvider } from './hooks/useMotionPreference';
 import { ThemeProvider } from './hooks/useTheme';
@@ -28,6 +29,13 @@ function ScrollToTop() {
 }
 
 function Loading() {
+  const { pathname } = useLocation();
+  const isBlogDetail = pathname.startsWith('/blog/');
+  
+  if (isBlogDetail) {
+    return <BlogSkeleton />;
+  }
+
   return (
     <div className="fixed inset-0 bg-theme-primary z-50 flex items-center justify-center">
       <div className="w-8 h-8 border-2 border-highlight border-t-transparent rounded-full animate-spin" />
