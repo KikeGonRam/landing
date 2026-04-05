@@ -85,7 +85,7 @@ export function Navigation() {
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
                 className={`text-body transition-colors duration-300 relative group ${
-                  isScrolled || theme === 'dark' || !isHome ? 'text-theme-secondary hover:text-theme-primary' : 'text-white/70 hover:text-white'
+                  isScrolled || theme === 'dark' || !isHome ? 'text-theme-secondary hover:text-theme-primary' : 'text-white/85 hover:text-white'
                 }`}
               >
                 {item.label}

@@ -177,7 +177,7 @@ export function Testimonials() {
                   <h4 className="text-body text-theme-primary font-medium">
                     {testimonial.name}
                   </h4>
-                  <p className="text-body-sm text-theme-muted">
+                  <p className="text-body-sm text-theme-secondary">
                     {testimonial.title}
                   </p>
                 </div>

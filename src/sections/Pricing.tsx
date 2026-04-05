@@ -226,7 +226,7 @@ export function Pricing() {
                 </span>
                 <span
                   className={`text-body ml-2 ${
-                    plan.featured ? 'text-theme-secondary' : 'text-theme-muted'
+                    plan.featured ? 'text-theme-primary/70' : 'text-theme-secondary'
                   }`}
                 >
                   / {plan.unit}
@@ -239,7 +239,7 @@ export function Pricing() {
                   <li
                     key={i}
                     className={`feature-item flex items-center gap-3 text-body ${
-                      plan.featured ? 'text-theme-secondary' : 'text-theme-muted'
+                      plan.featured ? 'text-theme-primary' : 'text-theme-secondary'
                     }`}
                   >
                     <Check
