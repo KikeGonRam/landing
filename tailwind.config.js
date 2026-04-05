@@ -83,6 +83,9 @@ module.exports = {
         'body': ['16px', { lineHeight: '1.5' }],
         'body-sm': ['14px', { lineHeight: '1.43' }],
       },
+      transitionTimingFunction: {
+        'expo-out': 'cubic-bezier(0.16, 1, 0.3, 1)',
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

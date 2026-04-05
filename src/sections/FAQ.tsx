@@ -139,7 +139,7 @@ export function FAQ() {
                 role="region"
                 aria-labelledby={questionId}
                 hidden={openIndex !== index}
-                className={`overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                className={`overflow-hidden transition-all duration-500 ease-expo-out ${
                   openIndex === index
                     ? 'max-h-[500px] opacity-100'
                     : 'max-h-0 opacity-0'
