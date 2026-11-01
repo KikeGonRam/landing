@@ -19,6 +19,15 @@ Object.defineProperty(window, "matchMedia", {
   })),
 });
 
+// jsdom no implementa estas APIs del navegador; el sitio las usa al montar (scroll suave, animaciones).
+class ResizeObserverMock {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+vi.stubGlobal("ResizeObserver", ResizeObserverMock);
+window.scrollTo = vi.fn() as unknown as typeof window.scrollTo;
+
 beforeAll(() => {
   const mockCtx = {
     clearRect: vi.fn(),
