@@ -46,7 +46,7 @@ export function SEO({ title, description, ogImage }: SEOProps) {
 
     // Update Twitter tags
     const updateTwitterTag = (name: string, content: string) => {
-      let tag = document.querySelector(`meta[name="${name}"]`);
+      const tag = document.querySelector(`meta[name="${name}"]`);
       if (tag) {
         tag.setAttribute('content', content);
       } else {
