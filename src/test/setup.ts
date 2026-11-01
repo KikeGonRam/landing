@@ -26,6 +26,10 @@ class ResizeObserverMock {
   disconnect() {}
 }
 vi.stubGlobal("ResizeObserver", ResizeObserverMock);
+// Las animaciones del sitio piden fotogramas en bucle; si piden uno cuando jsdom ya se desmontó, fallaría con
+// "requestAnimationFrame is not defined". Se reemplazan por temporizadores de Node, que siempre existen.
+vi.stubGlobal("requestAnimationFrame", (callback: FrameRequestCallback) => setTimeout(() => callback(Date.now()), 16));
+vi.stubGlobal("cancelAnimationFrame", (id: number) => clearTimeout(id));
 window.scrollTo = vi.fn() as unknown as typeof window.scrollTo;
 
 beforeAll(() => {
